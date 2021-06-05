@@ -1,0 +1,228 @@
+.top-gioi-thieu {
+	width: 100%;
+	height: auto;
+	/*background-color: red;*/
+}
+
+.top-gioi-thieu ul {
+	padding-left: 10%;
+}
+
+.top-gioi-thieu ul li {
+	float: left;
+	padding-right: 5px;
+	list-style: none;
+	font-size: 13px;
+	margin-bottom: 25px;
+	padding-top: 5px;
+}
+
+.bottom-gioi-thieu {
+	width: 100%;
+	height: auto;
+	float: left;
+}
+
+.bottom-gioi-thieu .block-gioi-thieu {
+	width: 52%;
+	height: auto;
+	margin-left: 10%;
+	float: left;
+}
+
+.right-hien-thi {
+	width: 23%;
+	height: auto;
+	float: left;
+	margin-left: 3.2%;
+}
+
+.right-hien-thi .right-danh-muc {
+	width: 100%;
+	height: auto;
+	padding-bottom: 16px;
+    margin-bottom: 32px;
+    margin-top: 7px;
+        border-left: solid 1px #e2e2e2;
+    position: relative;
+    padding-left: 27px;
+    padding-top: 2px;
+
+}
+
+.right-hien-thi .right-danh-muc:before {
+	content: '';
+    position: absolute;
+    left: -1px;
+    width: 3px;
+    background: #188ac7;
+    height: 50px;
+}
+
+.right-hien-thi .right-danh-muc .i-title {
+	margin-bottom: 34px;
+	font-weight: bold;
+    font-size: 22px;
+    text-transform: uppercase;
+    color: #414141;
+}
+
+.right-hien-thi .right-danh-muc .i-title:after {
+	content: '';
+    display: block;
+    height: 1px;
+    width: 50px;
+    margin-top: 10px;
+    background: #2d2d2d;
+}
+
+.right-hien-thi .right-danh-muc ul li {
+	position: relative;
+	list-style: none;
+}
+
+.right-hien-thi .right-danh-muc ul li a {
+	font-size: 16px;
+    color: #777777;
+    display: block;
+    padding-bottom: 14px;
+    border-bottom: solid 1px #e8e8e8;
+    margin-bottom: 10px;
+    text-decoration: none;
+}
+
+.right-hien-thi .right-danh-muc ul li a:hover {
+	color: #337ab7;
+}
+
+.right-hien-thi .right-danh-muc .rg-post {
+	padding-top: 1px;
+    padding-bottom: 25px;
+    border-bottom: solid 1px #e8e8e8;
+    margin-bottom: 26px;
+}
+
+.right-hien-thi .right-danh-muc .clearfix:before {
+	content: '';
+    display: block;
+    clear: both;
+}
+
+.right-hien-thi .right-danh-muc .clearfix:after {
+	content: '';
+    display: block;
+    clear: both;
+}
+
+.right-hien-thi .right-danh-muc .rg-post .img {
+	width: 80px;
+    float: left;
+    display: block;
+    border-radius: 3px;
+    overflow: hidden;
+    position: relative;
+}
+
+.right-hien-thi .right-danh-muc .rg-post .img:after {
+	content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+.right-hien-thi .right-danh-muc .rg-post .img img {
+	display: block;
+	width: 100%;
+	transition: all 0.3s ease-in-out;
+}
+
+.right-hien-thi .right-danh-muc .rg-post	.title {
+	margin-left: 93px;
+    color: #555555;
+    line-height: 24px;
+    max-height: 72px;
+    overflow: hidden;
+    margin-top: -5px;
+}
+
+.right-hien-thi .right-danh-muc .rg-post	.title a {
+	transition: all 0.2s ease-in-out;
+	color: inherit;
+	margin: 0;
+    padding: 0;
+    font-size: 17px;
+    vertical-align: baseline;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.right-hien-thi .right-danh-muc .rg-post	.title a:hover {
+	color: #337ab7;
+}
+
+.bottom-gioi-thieu .block-gioi-thieu .title-block-gioi-thieu {
+	width: 100%;
+	height: auto;
+	margin-bottom: 20px;
+}
+
+.bottom-gioi-thieu .block-gioi-thieu .title-block-gioi-thieu h3 {
+	padding: 5px 0px;
+	text-transform: uppercase;
+	font-size: 24px;
+}
+
+.bottom-gioi-thieu .block-gioi-thieu .title-block-gioi-thieu h3:after {
+	content: '';
+    display: block;
+    height: 2px;
+    background: #188ac7;
+    width: 75px;
+    margin-top: 9px;
+}
+
+
+.bottom-gioi-thieu .block-gioi-thieu .content-block-gioi-thieu {
+	width: 100%;
+	height: auto;
+}
+
+.bottom-gioi-thieu .block-gioi-thieu .content-block-gioi-thieu img {
+	width: 100%;
+	height: auto;
+	margin-top: 20px;
+	margin-bottom: 25px;
+}
+
+@media screen and (max-width: 1280px) {
+    .bottom-gioi-thieu .block-gioi-thieu {
+        margin-left: 3%;
+        width: 60%;
+    }
+
+    .right-hien-thi {
+        width: 30%;
+    }
+}
+
+@media screen and (max-width: 991px) {
+    .bottom-gioi-thieu .block-gioi-thieu {
+        margin-left: 2.5%;
+        width: 90%;
+    }
+
+    .top-gioi-thieu ul {
+        padding-left: 2.5%;
+    }
+
+    .right-hien-thi {
+        margin-left: 2.5%;
+        width: 90%;
+    }
+}
