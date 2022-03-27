@@ -48,18 +48,6 @@
                         <div class="product-image">
                           <img src="{{asset('./public/uploads/PostsAboutUsImg/'.$apau->post_about_us_img)}}" alt="IMG" />
                         </div>
-                        <div class="product_gallery">
-                          <div class="">
-                            <div class="product_price">
-                              <h3 style="font-weight: 400; color: #26B99A; margin: 0;">Từ khóa chuẩn SEO</h3>
-                              <span class="price-tax">{{$apau->post_about_us_metakeyword}}</span>
-                              <br>
-                              <h3 style="font-weight: 400; color: #26B99A; margin: 0;">Meta Desc SEO</h3>
-                              <span class="price-tax">{{$apau->post_about_us_metadesc}}</span>
-                              <br>
-                            </div>
-                          </div>
-                        </div>
                       </div>
 
                       <div class="col-md-5 col-sm-5 " style="border:0px solid #e5e5e5;">

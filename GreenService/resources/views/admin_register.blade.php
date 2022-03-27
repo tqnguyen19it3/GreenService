@@ -10,6 +10,7 @@
     <link rel="stylesheet" type="text/css" href="{{asset('./public/back-end/css/fontawesome-all.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('./public/back-end/css/iofrm-style.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('./public/back-end/css/iofrm-theme4.css')}}">
+    <link rel="shortcut icon" href="{{asset('./public/front-end/Images/favicon.jpeg')}}">
 </head>
 <body>
     <div class="form-body">

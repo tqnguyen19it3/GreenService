@@ -53,7 +53,7 @@
                       <label class="control-label col-md-3 col-sm-3 label-align">Nội dung kinh nghiệm năng lực <span class="required">*</span>
                       </label>
                       <div class="col-md-9 col-sm-9 ">
-                        <textarea class="form-control" rows="3" id="ckeditor4" name="criteria_post_content" placeholder="">{{$post_criteria->post_criteria_content}}</textarea>
+                        <textarea class="form-control" rows="3" id="ckeditor4" name="criteria_post_content" required="" placeholder="">{{$post_criteria->post_criteria_content}}</textarea>
                       </div>
                     </div>
                     <div class="item form-group">
@@ -73,8 +73,8 @@
                     <div class="ln_solid"></div>
                     <div class="item form-group">
                       <div class="col-md-9 col-sm-9 offset-md-3">
-                        <button class="btn btn-primary" type="reset">Hủy kinh nghiệm năng lực</button>
-                        <button type="submit" class="btn btn-success">Cập nhật kinh nghiệm năng lực</button>
+                        <button class="btn btn-primary" type="reset">Hủy cập nhật</button>
+                        <button type="submit" class="btn btn-success">Cập nhật</button>
                       </div>
                     </div>
 

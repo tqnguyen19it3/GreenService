@@ -1,12 +1,11 @@
 .dich-vu {
 	width: 100%;
-	height: auto;
+	height: 100%;
 }
 
 .dich-vu .top-dich-vu {
 	width: 100%;
-	height: auto;
-	background: red;
+	height: 100%;
 }
 
 .dich-vu .top-dich-vu ul {

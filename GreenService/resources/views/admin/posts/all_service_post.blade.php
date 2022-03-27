@@ -44,7 +44,7 @@
                           <th style="width: 20%">Tên nội dung dịch vụ</th>
                           <th>Hình ảnh dịch vụ</th>
                           <th>Mô tả dịch vụ</th>
-                          <th>Từ khóa</th>
+                          <th>Ngày thêm</th>
                           <th>Chế độ hiển thị</th>
                           <th style="width: 20%">#Hành động</th>
                         </tr>
@@ -65,7 +65,7 @@
                             {{$list_post_service->post_service_desc}}
                           </td>
                           <td class="project_progress" style="width: 35%;">
-                            {{$list_post_service->post_service_metakeyword}}
+                            {{$list_post_service->post_service_date}}
                           </td>
                           <td>
                             <?php
@@ -90,19 +90,7 @@
                       @endforeach
                     </table>
                     <ul class="pagination">
-                      @if ($currentPage > 1 && $countPage > 1)
-                      <li class="page-item"><a class="page-link" href="{{URL::TO('/all-posts-service/'.($currentPage-1))}}">Trước</a></li>
-                      @endif
-                      @for ($i = 1; $i <= $countPage; $i ++)
-                        @if ($i == $currentPage)
-                          <li class="page-item"><a class="page-link" style="background: #ffcc33; color: #fff;">{{$i}}</a></li>
-                        @else
-                          <li class="page-item"><a class="page-link" href="{{URL::TO('/all-posts-service/'.$i)}}">{{$i}}</a></li>
-                        @endif
-                      @endfor
-                      @if ($currentPage < $countPage && $countPage > 1)
-                      <li class="page-item"><a class="page-link" href="{{URL::TO('/all-posts-service/'.($currentPage+1))}}">Sau</a></li>
-                      @endif
+                      <li class="page-item">{!!$all_posts_service->links("pagination::bootstrap-4")!!}</li>
                     </ul>
                     <!-- end project list -->
                     

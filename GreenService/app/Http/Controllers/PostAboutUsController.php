@@ -46,24 +46,21 @@ class PostAboutUsController extends Controller
     	$data = $request->all();
     	$post_about_us = new PostAboutUsModels();
     	$post_about_us->post_about_us_content = $data['about_us_post_content'];
-    	$post_about_us->post_about_us_metakeyword = $data['about_us_post_metakeyword'];
-    	$post_about_us->post_about_us_metadesc = $data['about_us_post_metadesc'];
     	$post_about_us->post_about_us_status = $data['about_us_post_status'];
 
     	$get_image = $request->file('about_us_post_img');
 
         if($get_image){
             $get_name_image = $get_image->getClientOriginalName();
-            $name_image = current(explode('.', $get_name_image)); //current(explode('.', $get_name_image)); chia chuỗi ra để cắt đuôi từ dấu chấm
-            $new_custom_name_image = $name_image.'('.rand(0,99).')'.'.'.$get_image->getClientOriginalExtension(); 
-            //getClientOriginalExtention():lấy đuôi mở rộng
+            $name_image = current(explode('.', $get_name_image)); 
+            $new_custom_name_image = $name_image.'('.rand(0,99).trim(date('Y-m-d', time())).rand(0,99).')'.'.'.$get_image->getClientOriginalExtension();  
             $get_image->move('./public/uploads/PostsAboutUsImg', $new_custom_name_image);
             $post_about_us->post_about_us_img = $new_custom_name_image;
             $post_about_us->save();
             Session::put('message', 'Đã thêm bài viết giới thiệu');
             return redirect()->back();
         }else{
-        	Session::put('messageError','Làm ơn hãy thêm hình ảnh vào bài viết!');
+        	Session::put('messageError','Làm ơn hãy thêm hình ảnh cho bài viết!');
         	return redirect()->back();
         }
     }
@@ -83,21 +80,19 @@ class PostAboutUsController extends Controller
         
         return view('admin.posts.edit_about_us_post')->with(compact('post_about_us'));
     }
+
     public function update_posts_about_us(Request $request, $post_about_us_id){
 
         $data = $request->all();
         $post_about_us = PostAboutUsModels::find($post_about_us_id);
         $post_about_us->post_about_us_content = $data['about_us_post_content'];
-        $post_about_us->post_about_us_metadesc = $data['about_us_post_metadesc'];
-        $post_about_us->post_about_us_metakeyword = $data['about_us_post_metakeyword'];
         $post_about_us->post_about_us_status = $data['about_us_post_status'];
         $get_image1 = $request->file('about_us_post_img');
 
         if($get_image1){
             $get_name_image1 = $get_image1->getClientOriginalName();
-            $name_image1 = current(explode('.', $get_name_image1)); //current(explode('.', $get_name_image)); chia chuỗi ra để cắt đuôi từ dấu chấm
-            $new_custom_name_image1 = $name_image1.'('.rand(0,99).')'.'.'.$get_image1->getClientOriginalExtension(); 
-            //getClientOriginalExtention():lấy đuôi mở rộng
+            $name_image1 = current(explode('.', $get_name_image1));
+            $new_custom_name_image1 = $name_image1.'('.rand(0,99).trim(date('Y-m-d', time())).rand(0,99).')'.'.'.$get_image1->getClientOriginalExtension();  
             $get_image1->move('./public/uploads/PostsAboutUsImg', $new_custom_name_image1);
             $post_about_us->post_about_us_img = $new_custom_name_image1;
             $post_about_us->save();

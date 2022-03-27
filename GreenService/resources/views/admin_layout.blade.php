@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Admin | GreenService</title>
+    <link rel="shortcut icon" href="{{asset('./public/front-end/Images/favicon.jpeg')}}">
 
     <!-- Bootstrap -->
     <link href="{{asset('./public/back-end/vendors/bootstrap/dist/css/bootstrap.min.css')}}" rel="stylesheet">
@@ -16,10 +17,16 @@
     <!-- NProgress -->
     <link href="{{asset('./public/back-end/vendors/nprogress/nprogress.css')}}" rel="stylesheet">
     <!-- iCheck -->
-   <link href="{{asset('./public/back-end/vendors/iCheck/skins/flat/green.css')}}" rel="stylesheet">
+    <link href="{{asset('./public/back-end/vendors/iCheck/skins/flat/green.css')}}" rel="stylesheet">
 
     <!-- Custom Theme Style -->
     <link href="{{asset('./public/back-end/build/css/custom.min.css')}}" rel="stylesheet">
+
+    {{-- morris chart --}}
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
   </head>
 
   <body class="nav-md">
@@ -36,7 +43,7 @@
             <!-- menu profile quick info -->
             <div class="profile clearfix">
               <div class="profile_pic">
-                <img src="{{asset('./public/back-end/production/images/img.jpg')}}" alt="avatar" class="img-circle profile_img">
+                <img src="{{asset('./public/back-end/images/logo.jpeg')}}" alt="avatar" class="img-circle profile_img">
               </div>
               <div class="profile_info">
                 <span>Chào mừng</span>
@@ -74,11 +81,11 @@
                   <li><a><i class="fa fa-edit"></i> Bài đăng <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="{{URL::TO('/add-posts-service')}}">Thêm dịch vụ</a></li>
-                      <li><a href="{{URL::TO('/all-posts-service/1')}}">Bài đăng dịch vụ</a></li>
+                      <li><a href="{{URL::TO('/all-posts-service')}}">Bài đăng dịch vụ</a></li>
                       <li><a href="{{URL::TO('/add-posts-news')}}">Thêm tin tức</a></li>
-                      <li><a href="{{URL::TO('/all-posts-news/1')}}">Bài đăng tin tức</a></li>
+                      <li><a href="{{URL::TO('/all-posts-news')}}">Bài đăng tin tức</a></li>
                       <li><a href="{{URL::TO('/add-posts-project')}}">Thêm dự án</a></li>
-                      <li><a href="{{URL::TO('/all-posts-project/1')}}">Bài đăng dự án</a></li>
+                      <li><a href="{{URL::TO('/all-posts-project')}}">Bài đăng dự án</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-desktop"></i>Quản lý Banner <span class="fa fa-chevron-down"></span></a>
@@ -94,7 +101,7 @@
                 <ul class="nav side-menu">
                   <li><a><i class="fa fa-bug"></i> Trang bổ sung <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="{{URL::TO('/profile-admin')}}">Hồ sơ</a></li>
+                      <li><a href="{{URL::TO('/profile-admin/'.$admin_id)}}">Hồ sơ</a></li>
                       <li><a href="{{URL::TO('403')}}">403 Error</a></li>
                       <li><a href="{{URL::TO('404')}}">404 Error</a></li>
                       <li><a href="{{URL::TO('500')}}">500 Error</a></li>
@@ -118,7 +125,7 @@
                 <ul class=" navbar-right">
                   <li class="nav-item dropdown open" style="padding-left: 15px;">
                     <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
-                      <img src="{{asset('./public/back-end/production/images/img.jpg')}}" alt="avatar"><?php
+                      <img src="{{asset('./public/back-end/production/images/picture.jpg')}}" alt="avatar"><?php
                         $name = Session::get('admin_name');
                         if($name){
                             echo $name;
@@ -126,7 +133,7 @@
                     ?>
                     </a>
                     <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item"  href="{{URL::TO('/profile-admin')}}"> Hồ sơ</a>
+                      <a class="dropdown-item"  href="{{URL::TO('/profile-admin/'.$admin_id)}}"> Hồ sơ</a>
                       <a class="dropdown-item"  href="{{URL::TO('/admin-account/'.$admin_id)}}">Đổi tài khoản</a>
                       <a class="dropdown-item"  href="{{URL::TO('/admin-logout')}}"><i class="fa fa-sign-out pull-right"></i> Đăng xuất</a>
                     </div>
@@ -135,61 +142,25 @@
                   <li role="presentation" class="nav-item dropdown open">
                     <a href="javascript:;" class="dropdown-toggle info-number" id="navbarDropdown1" data-toggle="dropdown" aria-expanded="false">
                       <i class="fa fa-envelope-o"></i>
-                      <span class="badge bg-green">6</span>
+                      <span class="badge bg-green">1</span>
                     </a>
                     <ul class="dropdown-menu list-unstyled msg_list" role="menu" aria-labelledby="navbarDropdown1">
                       <li class="nav-item">
                         <a class="dropdown-item">
-                          <span class="image"><img src="{{asset('./public/back-end/production/images/img.jpg')}}" alt="Profile Image" /></span>
+                          <span class="image"><img src="{{asset('./public/back-end/production/images/picture.jpg')}}" alt="Profile Image" /></span>
                           <span>
-                            <span>John Smith</span>
-                            <span class="time">3 mins ago</span>
+                            <span><?php echo $name ?></span>
+{{--                             <span class="time">3 mins ago</span> --}}
                           </span>
                           <span class="message">
-                            Film festivals used to be do-or-die moments for movie makers. They were where...
-                          </span>
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="dropdown-item">
-                          <span class="image"><img src="{{asset('./public/back-end/production/images/img.jpg')}}" alt="Profile Image" /></span>
-                          <span>
-                            <span>John Smith</span>
-                            <span class="time">3 mins ago</span>
-                          </span>
-                          <span class="message">
-                            Film festivals used to be do-or-die moments for movie makers. They were where...
-                          </span>
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="dropdown-item">
-                          <span class="image"><img src="{{asset('./public/back-end/production/images/img.jpg')}}" alt="Profile Image" /></span>
-                          <span>
-                            <span>John Smith</span>
-                            <span class="time">3 mins ago</span>
-                          </span>
-                          <span class="message">
-                            Film festivals used to be do-or-die moments for movie makers. They were where...
-                          </span>
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="dropdown-item">
-                          <span class="image"><img src="{{asset('./public/back-end/production/images/img.jpg')}}" alt="Profile Image" /></span>
-                          <span>
-                            <span>John Smith</span>
-                            <span class="time">3 mins ago</span>
-                          </span>
-                          <span class="message">
-                            Film festivals used to be do-or-die moments for movie makers. They were where...
+                            Bạn vừa đăng nhập thành công vào hệ thống!
                           </span>
                         </a>
                       </li>
                       <li class="nav-item">
                         <div class="text-center">
                           <a class="dropdown-item">
-                            <strong>See All Alerts</strong>
+                            <strong>Xem tất cả thông báo</strong>
                             <i class="fa fa-angle-right"></i>
                           </a>
                         </div>
@@ -223,10 +194,13 @@
 
     <!-- jQuery -->
     <script src="{{asset('./public/back-end/vendors/jquery/dist/jquery.min.js')}}"></script>
+
     <!-- Bootstrap -->
     <script src="{{asset('./public/back-end/vendors/bootstrap/dist/js/bootstrap.bundle.min.js')}}"></script>
+
     <!-- FastClick -->
     <script src="{{asset('./public/back-end/vendors/fastclick/lib/fastclick.js')}}"></script>
+
     <!-- NProgress -->
     <script src="{{asset('./public/back-end/vendors/nprogress/nprogress.js')}}"></script>
     <!-- iCheck -->
@@ -238,6 +212,27 @@
     <!-- Custom Theme Scripts -->
     <script src="{{asset('./public/back-end/build/js/custom.min.js')}}"></script>
     <script src="{{asset('./public/back-end/ckeditor/ckeditor.js')}}"></script>
+    <script type="text/javascript"> //morris donut
+        var colorDanger = "#FF1744";
+        var donut = Morris.Donut({
+          element: 'donut_chart',
+          resize: true,
+          colors: [
+            '#FF5162',
+            '#FF8E51',
+            '#BE6DE3',
+            '#00CBFF'
+          ],
+          //labelColor:"#cccccc", // text color
+          //backgroundColor: '#333333', // border color
+          data: [
+            {label:"Dịch vụ", value:<?php echo $post_service_donut; ?>},
+            {label:"Tin tức", value:<?php echo $post_news_donut; ?>},
+            {label:"Dự án", value:<?php echo $post_project_donut; ?>},
+            {label:"Slider", value:<?php echo $banner_slider_donut; ?>}
+          ]
+    });
+    </script>
     <script type="text/javascript">
       CKEDITOR.replace('ckeditor',{
 
@@ -328,6 +323,118 @@
         }
     </script>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css">
-  
+  <script type="text/javascript">
+        $(document).ready(function() {
+            
+            company_profile_load();
+
+            function company_profile_load(){
+                var _token = $('input[name="_token"]').val();
+
+                $.ajax({
+                    url:"{{url('/select-company-profile')}}",
+                    method:"POST",
+                    data:{_token:_token},
+                    success:function(data){
+
+                        $('#company_profile_load').html(data);
+
+                    }
+                });
+            }
+
+            $(document).on('blur', '.edit_name_manager', function(){
+                var com_pro_id = $('.edit_name_manager').data('company_id');
+                var com_pro_name = $('.edit_name_manager').text();
+                var _token = $('input[name="_token"]').val();
+                // alert(com_pro_id);
+                // alert(com_pro_name);
+                $.ajax({
+                    url:"{{url('/update-name-manager-company-profile')}}",
+                    method:"POST",
+                    data:{com_pro_id:com_pro_id,com_pro_name:com_pro_name,_token:_token},
+                    success:function(data){
+
+                        company_profile_load();
+                        // $('#error_gal_pro').html('<strong class="text-success">Cập nhật tên thành công!</strong>');
+                        alert('Cập nhật thành công!');
+                    }
+                }); 
+            });
+
+            $(document).on('blur', '.edit_email_manager', function(){
+                var com_pro_id = $('.edit_email_manager').data('company_id');
+                var com_pro_email = $('.edit_email_manager').text();
+                var _token = $('input[name="_token"]').val();
+
+                $.ajax({
+                    url:"{{url('/update-email-manager-company-profile')}}",
+                    method:"POST",
+                    data:{com_pro_id:com_pro_id,com_pro_email:com_pro_email,_token:_token},
+                    success:function(data){
+
+                        company_profile_load();
+                        alert('Cập nhật thành công!');
+
+                    }
+                }); 
+            });
+
+            $(document).on('blur', '.edit_phone_manager', function(){
+                var com_pro_id = $('.edit_phone_manager').data('company_id');
+                var com_pro_phone = $('.edit_phone_manager').text();
+                var _token = $('input[name="_token"]').val();
+                // alert(com_pro_id);
+                // alert(com_pro_name);
+                $.ajax({
+                    url:"{{url('/update-phone-manager-company-profile')}}",
+                    method:"POST",
+                    data:{com_pro_id:com_pro_id,com_pro_phone:com_pro_phone,_token:_token},
+                    success:function(data){
+
+                        company_profile_load();
+                        alert('Cập nhật thành công!');
+
+                    }
+                }); 
+            });
+
+            $(document).on('blur', '.edit_position_manager', function(){
+                var com_pro_id = $('.edit_position_manager').data('company_id');
+                var com_pro_position = $('.edit_position_manager').text();
+                var _token = $('input[name="_token"]').val();
+
+                $.ajax({
+                    url:"{{url('/update-position-manager-company-profile')}}",
+                    method:"POST",
+                    data:{com_pro_id:com_pro_id,com_pro_position:com_pro_position,_token:_token},
+                    success:function(data){
+
+                        company_profile_load();
+                        alert('Cập nhật thành công!');
+
+                    }
+                }); 
+            });
+
+            $(document).on('blur', '.edit_desc_manager', function(){
+                var com_pro_id = $('.edit_desc_manager').data('company_id');
+                var com_pro_desc = $('.edit_desc_manager').text();
+                var _token = $('input[name="_token"]').val();
+
+                $.ajax({
+                    url:"{{url('/update-desc-manager-company-profile')}}",
+                    method:"POST",
+                    data:{com_pro_id:com_pro_id,com_pro_desc:com_pro_desc,_token:_token},
+                    success:function(data){
+
+                        company_profile_load();
+                        alert('Cập nhật thành công!');
+
+                    }
+                }); 
+            });
+        });
+</script>
   </body>
 </html>

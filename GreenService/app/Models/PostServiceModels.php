@@ -10,7 +10,7 @@ class PostServiceModels extends Model
     // use HasFactory;
     public $timestamps = false; //set time to false
     protected $fillable = [
-    	 'post_service_title','post_service_slug','post_service_desc','post_service_content','post_service_img','post_service_metakeyword','post_service_status'
+    	 'post_service_title','post_service_slug','post_service_desc','post_service_content','post_service_img','post_service_metakeyword','post_service_status','post_service_views','post_service_date'
     ];
     protected $primaryKey = 'post_service_id';
  	protected $table = 'tbl_post_service';

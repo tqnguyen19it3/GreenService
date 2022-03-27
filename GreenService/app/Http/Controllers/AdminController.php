@@ -7,6 +7,10 @@ use DB;
 use App\Http\Requests;
 use Session;
 use Illuminate\Support\Facades\Redirect;
+use App\Models\PostProjectModels;
+use App\Models\PostServiceModels;
+use App\Models\PostNewsModels;
+use App\Models\ManageBannerModels;
 session_start();
 
 class AdminController extends Controller
@@ -56,9 +60,20 @@ class AdminController extends Controller
     	}
     }
 
-    public function admin_dashboard(){
+    public function admin_dashboard(Request $request){
         $this->AuthLogin();
-    	return view('admin.admin_dashboard');
+
+        //total
+        $post_service_donut = PostServiceModels::all()->count();
+        $post_news_donut = PostNewsModels::all()->count();
+        $post_project_donut = PostProjectModels::all()->count();
+        $banner_slider_donut = ManageBannerModels::all()->count();
+
+        $post_service_views = PostServiceModels::orderBy('post_service_views', 'DESC')->take(20)->get();
+        $post_news_views = PostNewsModels::orderBy('post_news_views', 'DESC')->take(20)->get();
+        $post_project_views = PostProjectModels::orderBy('post_project_views', 'DESC')->take(20)->get();
+
+    	return view('admin.admin_dashboard')->with(compact('post_service_donut', 'post_news_donut', 'post_project_donut', 'banner_slider_donut','post_service_views','post_news_views','post_project_views'));
     }
 
     public function admin_logout(){

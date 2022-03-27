@@ -46,7 +46,7 @@
                       <label class="col-form-label col-md-3 col-sm-3 label-align" for="img">Hình ảnh giới thiệu <span class="required">*</span>
                       </label>
                       <div class="col-md-9 col-sm-9 ">
-                        <input type="file" name="about_us_post_img" class="form-control" id="exampleInputImage1" style="border: none;"> 
+                        <input type="file" name="about_us_post_img"  class="form-control" id="exampleInputImage1" style="border: none;"> 
                         <img src="{{URL::TO('./public/uploads/PostsAboutUsImg/'.$post_about_us->post_about_us_img)}}" alt="IMG" style="margin-top: 10px;" height="100" width="100">
                       </div>
                     </div>
@@ -54,21 +54,7 @@
                       <label class="control-label col-md-3 col-sm-3 label-align">Nội dung bài giới thiệu <span class="required">*</span>
                       </label>
                       <div class="col-md-9 col-sm-9 ">
-                        <textarea class="form-control" rows="3" id="ckeditor" name="about_us_post_content" placeholder="">{{$post_about_us->post_about_us_content}}</textarea>
-                      </div>
-                    </div>
-                    <div class="item form-group">
-                      <label class="col-form-label col-md-3 col-sm-3 label-align" for="Name">Meta từ khóa <span class="required">*</span>
-                      </label>
-                      <div class="col-md-9 col-sm-9 ">
-                        <input type="text"  name="about_us_post_metakeyword" value="{{$post_about_us->post_about_us_metakeyword}}" required="required" class="form-control ">
-                      </div>
-                    </div>
-                    <div class="item form-group">
-                      <label class="control-label col-md-3 col-sm-3 label-align">Meta bài giới thiệu <span class="required">*</span>
-                      </label>
-                      <div class="col-md-9 col-sm-9 ">
-                        <textarea class="form-control" rows="3" name="about_us_post_metadesc" placeholder="">{{$post_about_us->post_about_us_metadesc}}</textarea>
+                        <textarea class="form-control" rows="3" id="ckeditor" name="about_us_post_content" required="required" placeholder="">{{$post_about_us->post_about_us_content}}</textarea>
                       </div>
                     </div>
                     <div class="item form-group">
@@ -88,7 +74,7 @@
                     <div class="ln_solid"></div>
                     <div class="item form-group">
                       <div class="col-md-9 col-sm-9 offset-md-3">
-                        <button class="btn btn-primary" type="reset">Hủy giới thiệu</button>
+                        <button class="btn btn-primary" type="reset">Hủy cập nhật</button>
                         <button type="submit" class="btn btn-success">Cập nhật giới thiệu</button>
                       </div>
                     </div>

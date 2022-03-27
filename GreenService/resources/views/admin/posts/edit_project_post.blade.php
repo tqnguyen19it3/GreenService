@@ -85,13 +85,6 @@
                       </div>
                     </div>
                     <div class="item form-group">
-                      <label class="control-label col-md-3 col-sm-3 label-align">Meta nội dung dự án <span class="required">*</span>
-                      </label>
-                      <div class="col-md-9 col-sm-9 ">
-                        <textarea class="form-control" rows="5" name="projectpostMetadesc" required="" placeholder="">{{$post_project->post_project_metadesc}}</textarea>
-                      </div>
-                    </div>
-                    <div class="item form-group">
                       <label class="control-label col-md-3 col-sm-3 label-align">Trạng thái <span class="required">*</span></label>
                       <div class="col-md-9 col-sm-9 ">
                         <select name="projectpostStatus" class="form-control">

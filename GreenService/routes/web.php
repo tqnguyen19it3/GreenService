@@ -21,31 +21,22 @@ Route::post('/admin-register', 'App\Http\Controllers\AdminController@admin_regis
 Route::get('/admin-dashboard', 'App\Http\Controllers\AdminController@admin_dashboard');
 Route::get('/admin-logout', 'App\Http\Controllers\AdminController@admin_logout');
 
-Route::get('/profile-admin', 'App\Http\Controllers\AdminDashboardController@admin_profile');
+Route::get('/profile-admin/{admin_id}', 'App\Http\Controllers\AdminDashboardController@admin_profile');
+Route::post('/select-company-profile', 'App\Http\Controllers\AdminDashboardController@select_company_profile');
+Route::post('/update-name-manager-company-profile', 'App\Http\Controllers\AdminDashboardController@update_name_manager_company_profile');
+Route::post('/update-email-manager-company-profile', 'App\Http\Controllers\AdminDashboardController@update_email_manager_company_profile');
+Route::post('/update-phone-manager-company-profile', 'App\Http\Controllers\AdminDashboardController@update_phone_manager_company_profile');
+Route::post('/update-position-manager-company-profile', 'App\Http\Controllers\AdminDashboardController@update_position_manager_company_profile');
+Route::post('/update-desc-manager-company-profile', 'App\Http\Controllers\AdminDashboardController@update_desc_manager_company_profile');
 Route::get('/admin-account/{admin_id}', 'App\Http\Controllers\AdminDashboardController@admin_account');
 Route::post('/update-admin-account/{admin_id}', 'App\Http\Controllers\AdminDashboardController@update_admin_account');
 //===END ADMIN LOGIN AND REGISTER===//
 
 
-//===START ADMIN DASHBOARD CATEGORY===//
-Route::get('/add-cate-posts', 'App\Http\Controllers\CategoryPostController@add_cate_posts');
-Route::get('/all-cate-posts', 'App\Http\Controllers\CategoryPostController@all_cate_posts');
-Route::post('/save-cate-posts-news', 'App\Http\Controllers\CategoryPostController@save_cate_posts_news');
-Route::get('/edit-cate-news/{cate_news_id}', 'App\Http\Controllers\CategoryPostController@edit_cate_news');
-Route::post('/update-cate-posts-news/{cate_news_id}', 'App\Http\Controllers\CategoryPostController@update_cate_posts_news');
-Route::get('/delete-cate-news/{cate_news_id}', 'App\Http\Controllers\CategoryPostController@delete_cate_news');
-Route::post('/save-cate-posts-service', 'App\Http\Controllers\CategoryPostController@save_cate_posts_service');
-Route::get('/edit-cate-service/{cate_service_id}', 'App\Http\Controllers\CategoryPostController@edit_cate_service');
-Route::post('/update-cate-posts-service/{cate_service_id}', 'App\Http\Controllers\CategoryPostController@update_cate_posts_service');
-Route::get('/unactive-cate-posts-service/{cate_service_id}', 'App\Http\Controllers\CategoryPostController@unactive_cate_posts_service');
-Route::get('/active-cate-posts-service/{cate_service_id}', 'App\Http\Controllers\CategoryPostController@active_cate_posts_service');
-Route::get('/delete-cate-service/{cate_service_id}', 'App\Http\Controllers\CategoryPostController@delete_cate_service');
-//===END ADMIN DASHBOARD CATEGORY===//
-
-
 
 //===START ADMIN DASHBOARD POST===//
 
+//CKEDITOR UP GALLERY
 Route::post('/upload-ckeditor1', 'App\Http\Controllers\PostServiceController@ckeditor_image1');
 Route::get('/file-browser1', 'App\Http\Controllers\PostServiceController@file_browser1');
 Route::post('/upload-ckeditor2', 'App\Http\Controllers\PostNewsController@ckeditor_image2');
@@ -57,11 +48,10 @@ Route::get('/file-browser4', 'App\Http\Controllers\PostCriteriaController@file_b
 Route::post('/upload-ckeditor', 'App\Http\Controllers\PostAboutUsController@ckeditor_image');
 Route::get('/file-browser', 'App\Http\Controllers\PostAboutUsController@file_browser');
 
-
 //POSTS SERVICE
 Route::get('/add-posts-service', 'App\Http\Controllers\PostServiceController@add_posts_service');
 Route::post('/save-posts-service', 'App\Http\Controllers\PostServiceController@save_posts_service');
-Route::get('/all-posts-service/{id_pdv}', 'App\Http\Controllers\PostServiceController@all_posts_service');
+Route::get('/all-posts-service', 'App\Http\Controllers\PostServiceController@all_posts_service');
 Route::get('/edit-posts-service/{post_service_id}', 'App\Http\Controllers\PostServiceController@edit_posts_service');
 Route::post('/update-posts-service/{post_service_id}', 'App\Http\Controllers\PostServiceController@update_posts_service');
 Route::get('/unactive-posts-service/{post_service_id}', 'App\Http\Controllers\PostServiceController@unactive_posts_service');
@@ -72,7 +62,7 @@ Route::get('/view-posts-service/{post_service_id}', 'App\Http\Controllers\PostSe
 //POSTS NEWS
 Route::get('/add-posts-news', 'App\Http\Controllers\PostNewsController@add_posts_news');
 Route::post('/save-posts-news', 'App\Http\Controllers\PostNewsController@save_posts_news');
-Route::get('/all-posts-news/{id_pn}', 'App\Http\Controllers\PostNewsController@all_posts_news');
+Route::get('/all-posts-news', 'App\Http\Controllers\PostNewsController@all_posts_news');
 Route::get('/edit-posts-news/{post_news_id}', 'App\Http\Controllers\PostNewsController@edit_posts_news');
 Route::post('/update-posts-news/{post_news_id}', 'App\Http\Controllers\PostNewsController@update_posts_news');
 Route::get('/unactive-posts-news/{post_news_id}', 'App\Http\Controllers\PostNewsController@unactive_posts_news');
@@ -98,17 +88,17 @@ Route::get('/edit-posts-about-us/{post_about_us_id}', 'App\Http\Controllers\Post
 Route::post('/update-posts-about-us/{post_about_us_id}', 'App\Http\Controllers\PostAboutUsController@update_posts_about_us');
 Route::get('/delete-posts-about-us/{post_about_us_id}', 'App\Http\Controllers\PostAboutUsController@delete_posts_about_us');
 
-
 //POSTS PROJECT
 Route::get('/add-posts-project', 'App\Http\Controllers\PostProjectController@add_posts_project');
 Route::post('/save-posts-project', 'App\Http\Controllers\PostProjectController@save_posts_project');
-Route::get('/all-posts-project/{cr_posts_project}', 'App\Http\Controllers\PostProjectController@all_posts_project');
+Route::get('/all-posts-project', 'App\Http\Controllers\PostProjectController@all_posts_project');
 Route::get('/edit-posts-project/{post_project_id}', 'App\Http\Controllers\PostProjectController@edit_posts_project');
 Route::post('/update-posts-project/{post_project_id}', 'App\Http\Controllers\PostProjectController@update_posts_project');
 Route::get('/unactive-posts-project/{post_project_id}', 'App\Http\Controllers\PostProjectController@unactive_posts_project');
 Route::get('/active-posts-project/{post_project_id}', 'App\Http\Controllers\PostProjectController@active_posts_project');
 Route::get('/delete-posts-project/{post_project_id}', 'App\Http\Controllers\PostProjectController@delete_posts_project');
 Route::get('/view-posts-project/{post_project_id}', 'App\Http\Controllers\PostProjectController@view_posts_project');
+
 //===END ADMIN DASHBOARD POST===//
 
 
@@ -121,6 +111,7 @@ Route::get('/unactive-slider/{slider_id}', 'App\Http\Controllers\ManageBannerCon
 Route::get('/active-slider/{slider_id}', 'App\Http\Controllers\ManageBannerController@active_slider');
 Route::get('/delete-slider/{slider_id}', 'App\Http\Controllers\ManageBannerController@delete_slider');
 //===END SLIDER BANNER===//
+
 
 
 //===START HOME===//
@@ -138,7 +129,9 @@ Route::get('/lien-he', 'App\Http\Controllers\HomeController@lien_he');
 //===END HOME===//
 
 
+
 //===ERROR===//
 Route::get('/403', 'App\Http\Controllers\AdminDashboardController@Error403');
 Route::get('/404', 'App\Http\Controllers\AdminDashboardController@Error404');
 Route::get('/500', 'App\Http\Controllers\AdminDashboardController@Error500');
+//===END ERROR===//

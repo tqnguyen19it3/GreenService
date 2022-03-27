@@ -43,7 +43,7 @@
                     {{ csrf_field() }}
                     <div class="item form-group">
                         <label class="control-label col-md-3 col-sm-3 label-align" for="exampleInputImage1">Hình ảnh cho kinh nghiệm năng lực</label>
-                        <input type="file" name="criteria_post_img" class="form-control" id="exampleInputImage1" style="border: none;">
+                        <input type="file" name="criteria_post_img" class="form-control" required="" id="exampleInputImage1" style="border: none;">
                     </div>
                     <div class="item form-group">
                       <label class="control-label col-md-3 col-sm-3 label-align">Nội dung kinh nghiệm năng lực <span class="required">*</span>
@@ -64,8 +64,8 @@
                     <div class="ln_solid"></div>
                     <div class="item form-group">
                       <div class="col-md-9 col-sm-9 offset-md-3">
-                        <button class="btn btn-primary" type="reset">Hủy kinh nghiệm năng lực</button>
-                        <button type="submit" class="btn btn-success">Tạo kinh nghiệm năng lực</button>
+                        <button class="btn btn-primary" type="reset">Hủy bài viết</button>
+                        <button type="submit" class="btn btn-success">Tạo bài viết</button>
                       </div>
                     </div>
 

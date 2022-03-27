@@ -5,19 +5,24 @@
 			<li>TRANG CHỦ</li>
 			<li><i class="fas fa-chevron-right"></i></li>
 			<li>DỊCH VỤ</li>
+			<li><i class="fas fa-chevron-right"></i></li>
+			@foreach($post_service as $key => $service_post)
+			<li style="text-transform: uppercase;">{{$service_post->post_service_title}}</li>
 		</ul>
 	</div>
 	<div class="bottom-dich-vu">
 		<div class="block-dich-vu">
-			@if($post_service->post_service_status == 1)
+			
+			@if($service_post->post_service_status == 1)
 			<div class="title-block-dich-vu">
-				<h3>Bài viết {{$post_service->post_service_title}}</h3>
+				<h3><span style="font-weight: 900">Bài viết:</span> {{$service_post->post_service_title}}</h3>
 			</div>
 			<div class="content-block-dich-vu">
-				<img class="embed-responsive" alt="IMG Description" src="{{URL::TO('./public/uploads/PostsServiceImg/'.$post_service->post_service_img)}}">
-				{!!$post_service->post_service_content!!}
+				<img class="embed-responsive" alt="IMG Description" src="{{URL::TO('./public/uploads/PostsServiceImg/'.$service_post->post_service_img)}}">
+				{!!$service_post->post_service_content!!}
 			</div>
 			@endif
+			@endforeach
 		</div>
 		<div class="right-hien-thi">
 			<div class="right-danh-muc">
@@ -41,7 +46,7 @@
 				@foreach($right_news as $post_right_new)
 					@if($post_right_new->post_news_status == 1)
 				<div class="rg-post clearfix">
-					<a href="#" class="img">
+					<a href="{{URL::TO('/tin-tuc/'.$post_right_new->post_news_slug.'/'.$post_right_new->post_news_id)}}" class="img">
 						<img class="embed-responsive" alt="IMG Description" src="{{URL::TO('./public/uploads/PostsNewsImg/'.$post_right_new->post_news_img)}}">
 					</a>
 					<h3 class="title">
@@ -50,7 +55,23 @@
 				</div>
 					@endif
 				@endforeach
-			</div>	
+			</div>
+
+			<div class="right-danh-muc">
+				<h2 class="i-title">Bài viết liên quan</h2>
+				@foreach($related_service as $rel_service)
+					@if($rel_service->post_service_status == 1)
+				<div class="rg-post clearfix">
+					<a href="{{URL::TO('/tin-tuc/'.$rel_service->post_service_slug.'/'.$rel_service->post_service_id)}}" class="img">
+						<img class="embed-responsive" alt="IMG Description" src="{{URL::TO('./public/uploads/PostsServiceImg/'.$rel_service->post_service_img)}}">
+					</a>
+					<h3 class="title">
+						<a href="{{URL::TO('/dich-vu/'.$rel_service->post_service_slug.'/'.$rel_service->post_service_id)}}">{{$rel_service->post_service_title}}</a>
+					</h3>
+				</div>
+					@endif
+				@endforeach
+			</div>		
 		</div>
 	</div>
 @endsection

@@ -7,6 +7,7 @@ use DB;
 use App\Http\Requests;
 use App\Models\PostProjectModels;
 use Session;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Redirect;
 
 class PostProjectController extends Controller
@@ -45,54 +46,36 @@ class PostProjectController extends Controller
     	$post_project->post_project_title = $data['project_post_title'];
     	$post_project->post_project_slug = $data['project_post_slug'];
     	$post_project->post_project_desc = $data['project_post_desc'];
-    	$post_project->post_project_metadesc = $data['project_post_metadesc'];
     	$post_project->post_project_metakeyword = $data['project_post_metakeyword'];
     	$post_project->post_project_content = $data['project_post_content'];
     	$post_project->post_project_status = $data['project_post_status'];
+
+        $today = Carbon::now('Asia/Ho_Chi_Minh')->format('Y-m-d H:i:s');
+        $post_project->post_project_date = $today;
 
     	$get_image = $request->file('project_post_img');
 
         if($get_image){
             $get_name_image = $get_image->getClientOriginalName();
-            $name_image = current(explode('.', $get_name_image)); //current(explode('.', $get_name_image)); chia chuỗi ra để cắt đuôi từ dấu chấm
-            $new_custom_name_image = $name_image.'('.rand(0,99).')'.'.'.$get_image->getClientOriginalExtension(); 
-            //getClientOriginalExtention():lấy đuôi mở rộng
+            $name_image = current(explode('.', $get_name_image));
+            $new_custom_name_image = $name_image.'('.rand(0,99).trim(date('Y-m-d', time())).rand(0,99).')'.'.'.$get_image->getClientOriginalExtension();  
             $get_image->move('./public/uploads/PostsProjectImg', $new_custom_name_image);
             $post_project->post_project_img = $new_custom_name_image;
             $post_project->save();
-            Session::put('message', 'Đã thêm mới dự án');
+            Session::put('message', 'Đã thêm mới bài viết dự án');
             return redirect()->back();
         }else{
-        	Session::put('messageError','Làm ơn hãy thêm hình ảnh vào dự án!');
+        	Session::put('messageError','Làm ơn hãy thêm hình ảnh vào bài viết dự án!');
         	return redirect()->back();
         }
     }
  
-    public function all_posts_project($cr_posts_project){
+    public function all_posts_project(){
         $this->AuthLogin();
 
-        $num_start = $cr_posts_project;
+        $all_posts_project = PostProjectModels::orderBy('post_project_id', 'DESC')->paginate(4);
 
-        $countrow = PostProjectModels::count();
-
-        $currentPage = $num_start ? $num_start : 1;
-
-        $pageShow = 4;
-
-        $countPage = ceil($countrow / $pageShow);
-
-        if ($currentPage > $countPage) {
-            $currentPage = $countPage;
-        }
-        if ($currentPage < 1) {
-            $currentPage = 1;
-        }
-
-        $pageStart = ($currentPage - 1) * $pageShow;
-
-        $all_posts_project = PostProjectModels::orderBy('post_project_id', 'DESC')->offset($pageStart)->limit($pageShow)->get();
-
-        return view('admin.posts.all_project_post')->with(compact('all_posts_project'))->with('currentPage', $currentPage)->with('countPage', $countPage);
+        return view('admin.posts.all_project_post')->with(compact('all_posts_project'));
     }
 
     public function edit_posts_project($post_project_id){
@@ -102,14 +85,13 @@ class PostProjectController extends Controller
     	
     	return view('admin.posts.edit_project_post')->with(compact('post_project'));
     }
+
     public function update_posts_project(Request $request, $post_project_id){
 
         $data = $request->all();
     	$post_project = PostProjectModels::find($post_project_id);
     	$post_project->post_project_title = $data['projectpostTitle'];
     	$post_project->post_project_slug = $data['projectpostSlug'];
-    	$post_project->post_project_desc = $data['projectpostDesc'];
-    	$post_project->post_project_metadesc = $data['projectpostMetadesc'];
     	$post_project->post_project_metakeyword = $data['projectpostMetakeyword'];
     	$post_project->post_project_content = $data['projectpostContent'];
     	$post_project->post_project_status = $data['projectpostStatus'];
@@ -117,123 +99,34 @@ class PostProjectController extends Controller
 
         if($get_image1){
             $get_name_image1 = $get_image1->getClientOriginalName();
-            $name_image1 = current(explode('.', $get_name_image1)); //current(explode('.', $get_name_image)); chia chuỗi ra để cắt đuôi từ dấu chấm
-            $new_custom_name_image1 = $name_image1.'('.rand(0,99).')'.'.'.$get_image1->getClientOriginalExtension(); 
-            //getClientOriginalExtention():lấy đuôi mở rộng
+            $name_image1 = current(explode('.', $get_name_image1));
+            $new_custom_name_image1 = $name_image1.'('.rand(0,99).trim(date('Y-m-d', time())).rand(0,99).')'.'.'.$get_image1->getClientOriginalExtension();  
             $get_image1->move('./public/uploads/PostsProjectImg', $new_custom_name_image1);
             $post_project->post_project_img = $new_custom_name_image1;
             $post_project->save();
-            Session::put('message', 'Đã cập nhật mới dự án');
+            Session::put('message', 'Đã cập nhật mới bài viết dự án');
+            return Redirect::to('/all-posts-project');
 
-            $num_start = 1;
-
-            $countrow = PostProjectModels::count();
-
-            $currentPage = $num_start ? $num_start : 1;
-
-            $pageShow = 4;
-
-            $countPage = ceil($countrow / $pageShow);
-
-            if ($currentPage > $countPage) {
-                $currentPage = $countPage;
-            }
-            if ($currentPage < 1) {
-                $currentPage = 1;
-            }
-
-            $pageStart = ($currentPage - 1) * $pageShow;
-
-            $all_posts_project = PostProjectModels::orderBy('post_project_id', 'DESC')->offset($pageStart)->limit($pageShow)->get();
-
-            return view('admin.posts.all_project_post')->with(compact('all_posts_project'))->with('currentPage', $currentPage)->with('countPage', $countPage);
-                // return redirect('/all-posts-project');
         }else{
 
 	        $post_project->save();
-	    	Session::put('message','Hình ảnh dự án chưa được làm mới!');
-
-            $num_start = 1;
-
-            $countrow = PostProjectModels::count();
-
-            $currentPage = $num_start ? $num_start : 1;
-
-            $pageShow = 4;
-
-            $countPage = ceil($countrow / $pageShow);
-
-            if ($currentPage > $countPage) {
-                $currentPage = $countPage;
-            }
-            if ($currentPage < 1) {
-                $currentPage = 1;
-            }
-
-            $pageStart = ($currentPage - 1) * $pageShow;
-
-            $all_posts_project = PostProjectModels::orderBy('post_project_id', 'DESC')->offset($pageStart)->limit($pageShow)->get();
-
-        return view('admin.posts.all_project_post')->with(compact('all_posts_project'))->with('currentPage', $currentPage)->with('countPage', $countPage);
-	    	// return redirect('/all-posts-project');
-	    }
+	    	Session::put('message','Hình ảnh cho bài viết dự án chưa được làm mới!');
+            return Redirect::to('/all-posts-project');
+        }
     }
 
     public function unactive_posts_project($post_project_id){
         $this->AuthLogin();
         DB::table('tbl_post_project')->where('post_project_id', $post_project_id)->update(['post_project_status'=>0]);
         Session::put('message', 'Bài viết dự án vừa bị ẩn!');
-        $num_start = 1;
+        return Redirect::to('/all-posts-project');
 
-            $countrow = PostProjectModels::count();
-
-            $currentPage = $num_start ? $num_start : 1;
-
-            $pageShow = 4;
-
-            $countPage = ceil($countrow / $pageShow);
-
-            if ($currentPage > $countPage) {
-                $currentPage = $countPage;
-            }
-            if ($currentPage < 1) {
-                $currentPage = 1;
-            }
-
-            $pageStart = ($currentPage - 1) * $pageShow;
-
-            $all_posts_project = PostProjectModels::orderBy('post_project_id', 'DESC')->offset($pageStart)->limit($pageShow)->get();
-
-        return view('admin.posts.all_project_post')->with(compact('all_posts_project'))->with('currentPage', $currentPage)->with('countPage', $countPage);
-        // return Redirect::to('/all-posts-project');
     }
     public function active_posts_project($post_project_id){
         $this->AuthLogin();
         DB::table('tbl_post_project')->where('post_project_id', $post_project_id)->update(['post_project_status'=>1]);
         Session::put('message', 'Bài viết dự án vừa được hiển thị!');
-        $num_start = 1;
-
-            $countrow = PostProjectModels::count();
-
-            $currentPage = $num_start ? $num_start : 1;
-
-            $pageShow = 4;
-
-            $countPage = ceil($countrow / $pageShow);
-
-            if ($currentPage > $countPage) {
-                $currentPage = $countPage;
-            }
-            if ($currentPage < 1) {
-                $currentPage = 1;
-            }
-
-            $pageStart = ($currentPage - 1) * $pageShow;
-
-            $all_posts_project = PostProjectModels::orderBy('post_project_id', 'DESC')->offset($pageStart)->limit($pageShow)->get();
-
-        return view('admin.posts.all_project_post')->with(compact('all_posts_project'))->with('currentPage', $currentPage)->with('countPage', $countPage);
-        // return Redirect::to('/all-posts-project');
+        return Redirect::to('/all-posts-project');
     }
 
     public function delete_posts_project($post_project_id){
@@ -250,7 +143,7 @@ class PostProjectController extends Controller
 
     	$posts_project->delete();
     	
-    	Session::put('message', 'Đã xóa dự án này.');
+    	Session::put('message', 'Đã xóa bài viết dự án này.');
     	return redirect()->back();
     }
 

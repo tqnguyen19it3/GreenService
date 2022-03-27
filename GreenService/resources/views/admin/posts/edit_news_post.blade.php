@@ -8,22 +8,22 @@
           </div>
           <div class="clearfix"></div>
           <?php
-                      $message = Session::get('message');
-                      $messageError = Session::get('messageError');
-                      if($message){
-                        echo "<div class='alert alert-success alert-dismissible fade show'>";
-                          echo "<button type='button' class='close' data-dismiss='alert'>&times;</button>" ;
-                          echo "<strong>Thành Công! </strong>".$message;
-                        echo "</div>";
-                        Session::put('message', null);
-                      }elseif($messageError){
-                         echo "<div class='alert alert-warning alert-dismissible fade show'>";
-                          echo "<button type='button' class='close' data-dismiss='alert'>&times;</button>" ;
-                          echo "<strong>Lỗi! </strong>".$messageError;
-                        echo "</div>";
-                        Session::put('messageError', null);
-                      }
-                  ?>
+            $message = Session::get('message');
+            $messageError = Session::get('messageError');
+            if($message){
+              echo "<div class='alert alert-success alert-dismissible fade show'>";
+                echo "<button type='button' class='close' data-dismiss='alert'>&times;</button>" ;
+                echo "<strong>Thành Công! </strong>".$message;
+              echo "</div>";
+              Session::put('message', null);
+            }elseif($messageError){
+               echo "<div class='alert alert-warning alert-dismissible fade show'>";
+                echo "<button type='button' class='close' data-dismiss='alert'>&times;</button>" ;
+                echo "<strong>Lỗi! </strong>".$messageError;
+              echo "</div>";
+              Session::put('messageError', null);
+            }
+          ?>
           <div class="row">
             <div class="col-md-12 col-sm-12 ">
               <div class="x_panel">

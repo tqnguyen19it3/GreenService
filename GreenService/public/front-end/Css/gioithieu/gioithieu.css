@@ -43,11 +43,10 @@
 	padding-bottom: 16px;
     margin-bottom: 32px;
     margin-top: 7px;
-        border-left: solid 1px #e2e2e2;
+    border-left: solid 1px #e2e2e2;
     position: relative;
     padding-left: 27px;
     padding-top: 2px;
-
 }
 
 .right-hien-thi .right-danh-muc:before {
@@ -60,7 +59,7 @@
 }
 
 .right-hien-thi .right-danh-muc .i-title {
-	margin-bottom: 34px;
+	margin-bottom: 24px;
 	font-weight: bold;
     font-size: 22px;
     text-transform: uppercase;
@@ -82,12 +81,12 @@
 }
 
 .right-hien-thi .right-danh-muc ul li a {
-	font-size: 16px;
+	font-size: 17px;
     color: #777777;
     display: block;
-    padding-bottom: 14px;
+    padding-bottom: 5px;
     border-bottom: solid 1px #e8e8e8;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     text-decoration: none;
 }
 
@@ -97,9 +96,9 @@
 
 .right-hien-thi .right-danh-muc .rg-post {
 	padding-top: 1px;
-    padding-bottom: 25px;
+    padding-bottom: 10px;
     border-bottom: solid 1px #e8e8e8;
-    margin-bottom: 26px;
+    margin-bottom: 10px;
 }
 
 .right-hien-thi .right-danh-muc .clearfix:before {
@@ -145,10 +144,11 @@
 .right-hien-thi .right-danh-muc .rg-post	.title {
 	margin-left: 93px;
     color: #555555;
-    line-height: 24px;
+    line-height: 20px;
     max-height: 72px;
     overflow: hidden;
     margin-top: -5px;
+    text-align: justify;
 }
 
 .right-hien-thi .right-danh-muc .rg-post	.title a {
@@ -159,7 +159,6 @@
     font-size: 17px;
     vertical-align: baseline;
     text-decoration: none;
-    text-transform: uppercase;
 }
 
 .right-hien-thi .right-danh-muc .rg-post	.title a:hover {

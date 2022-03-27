@@ -37,9 +37,8 @@ class ManageBannerController extends Controller
 
         if($get_image){
             $get_name_image = $get_image->getClientOriginalName();
-            $name_image = current(explode('.', $get_name_image)); //current(explode('.', $get_name_image)); chia chuỗi ra để cắt đuôi từ dấu chấm
-            $new_custom_name_image = $name_image.'('.rand(0,99).')'.'.'.$get_image->getClientOriginalExtension(); 
-            //getClientOriginalExtention():lấy đuôi mở rộng
+            $name_image = current(explode('.', $get_name_image)); 
+            $new_custom_name_image = $name_image.'('.rand(0,99).trim(date('Y-m-d', time())).rand(0,99).')'.'.'.$get_image->getClientOriginalExtension();  
             $get_image->move('./public/uploads/PostsBannerImg', $new_custom_name_image);
             $post_slider->slider_img = $new_custom_name_image;
             $post_slider->save();
@@ -73,8 +72,6 @@ class ManageBannerController extends Controller
 
     	$posts_slider = ManageBannerModels::find($slider_id);
     	$posts_slider_img = $posts_slider->slider_img;
-
-    	//===CHỖ NÀY ĐỂ XÓA LUÔN ẢNH TRONG FOLDER KHI XÓA BÀI VIẾT===//
 
     	if($posts_slider_img){
     		$path = './public/uploads/PostsBannerImg/'.$posts_slider_img;

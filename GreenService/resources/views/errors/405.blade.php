@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Error 500</title>
+    <title>Error 405</title>
 
     <!-- Bootstrap -->
     <link href="{{asset('./public/back-end/vendors/bootstrap/dist/css/bootstrap.min.css')}}" rel="stylesheet">
@@ -28,10 +28,10 @@
         <div class="col-md-12">
           <div class="col-middle">
             <div class="text-center">
-              <h1 class="error-number">500</h1>
+              <h1 class="error-number">405</h1>
               <h1>Công ty TNHH Khánh Huy thông báo!</h1>
-              <h2>Lỗi máy chủ nội bộ</h2>
-              <p>Chúng tôi tự động theo dõi các lỗi này, nhưng nếu sự cố vẫn tiếp diễn, vui lòng liên hệ với chúng tôi. Trong thời gian chờ đợi, hãy thử làm mới.
+              <h2>Phương pháp 405 Không được phép</h2>
+              <p>Có gì đó bị hỏng. Vui lòng cho chúng tôi biết bạn đang làm gì khi lỗi này xảy ra.<br> Chúng tôi sẽ sửa chữa nó trong thời gian sớm nhất. Xin lỗi vì sự bất tiện gây ra
               </p>
             </div>
           </div>

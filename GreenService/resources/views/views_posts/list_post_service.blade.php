@@ -1,15 +1,16 @@
 @extends('views_posts.posts_all')
 @section('home_posts_content')
+
 	<div class="dich-vu">
 		<div class="top-dich-vu">
 			<ul>
-				<li>Trang chủ</li>
+				<li>TRANG CHỦ</li>
 				<li><i class="fas fa-chevron-right"></i></li>
-				<li>Dịch vụ</li>
+				<li>DỊCH VỤ</li>
 			</ul>
 		</div>
 		<div class="bottom-dich-vu">
-			
+			 
 			<div class="left-dich-vu">
 				<div class="title-ldva">
 					<h1 class="ldv-title">Danh sách dịch vụ</h1>
@@ -23,14 +24,17 @@
 						<h2 class="title">
 							<a href="{{URL::TO('/dich-vu/'.$post_service->post_service_slug.'/'.$post_service->post_service_id)}}">{{$post_service->post_service_title}}</a>
 						</h2>
-						<time>Thu bay</time>
+						<time>Đã thêm vào: {{$post_service->post_service_date}}</time>
 						<div class="simpleconten">
 							{{$post_service->post_service_desc}}
 						</div>
-						<a href="{{URL::TO('/dich-vu/'.$post_service->post_service_slug.'/'.$post_service->post_service_id)}}" class="more">Xem chi tiet</a>
+						<a href="{{URL::TO('/dich-vu/'.$post_service->post_service_slug.'/'.$post_service->post_service_id)}}" class="more">Xem chi tiết</a>
 					</div>
 				</div>
 				@endforeach
+				<ul class="pagination">
+                    <li class="page-item">{!!$all_posts_service->links("pagination::bootstrap-4")!!}</li>
+                </ul>
 			</div>
 
 			<div class="right-hien-thi">
@@ -55,7 +59,7 @@
 					@foreach($right_news as $post_right_new)
 					@if($post_right_new->post_news_status == 1)
 					<div class="rg-post clearfix">
-						<a href="#" class="img">
+						<a href="{{URL::TO('/tin-tuc/'.$post_right_new->post_news_slug.'/'.$post_right_new->post_news_id)}}" class="img">
 							<img class="embed-responsive" alt="IMG Description" src="{{URL::TO('./public/uploads/PostsNewsImg/'.$post_right_new->post_news_img)}}">
 						</a>
 						<h3 class="title">

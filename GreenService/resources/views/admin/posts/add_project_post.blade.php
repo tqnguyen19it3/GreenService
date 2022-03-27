@@ -8,22 +8,22 @@
           </div>
           <div class="clearfix"></div>
           <?php
-                      $message = Session::get('message');
-                      $messageError = Session::get('messageError');
-                      if($message){
-                        echo "<div class='alert alert-success alert-dismissible fade show'>";
-                          echo "<button type='button' class='close' data-dismiss='alert'>&times;</button>" ;
-                          echo "<strong>Thành Công! </strong>".$message;
-                        echo "</div>";
-                        Session::put('message', null);
-                      }elseif($messageError){
-                         echo "<div class='alert alert-warning alert-dismissible fade show'>";
-                          echo "<button type='button' class='close' data-dismiss='alert'>&times;</button>" ;
-                          echo "<strong>Lỗi! </strong>".$messageError;
-                        echo "</div>";
-                        Session::put('messageError', null);
-                      }
-                  ?>
+            $message = Session::get('message');
+            $messageError = Session::get('messageError');
+            if($message){
+              echo "<div class='alert alert-success alert-dismissible fade show'>";
+                echo "<button type='button' class='close' data-dismiss='alert'>&times;</button>" ;
+                echo "<strong>Thành Công! </strong>".$message;
+              echo "</div>";
+              Session::put('message', null);
+            }elseif($messageError){
+               echo "<div class='alert alert-warning alert-dismissible fade show'>";
+                echo "<button type='button' class='close' data-dismiss='alert'>&times;</button>" ;
+                echo "<strong>Lỗi! </strong>".$messageError;
+              echo "</div>";
+              Session::put('messageError', null);
+            }
+          ?>
           <div class="row">
             <div class="col-md-12 col-sm-12 ">
               <div class="x_panel">
@@ -42,7 +42,7 @@
                   <form id="demo-form2" action="{{URL::TO('/save-posts-project')}}" enctype="multipart/form-data" method="post" data-parsley-validate class="form-horizontal form-label-left">
                     {{ csrf_field() }}
                     <div class="item form-group">
-                      <label class="col-form-label col-md-3 col-sm-3 label-align" for="Name">Tên nội dung dự án <span class="required">*</span>
+                      <label class="col-form-label col-md-3 col-sm-3 label-align" for="Name">Tên dự án <span class="required">*</span>
                       </label>
                       <div class="col-md-9 col-sm-9 ">
                         <input type="text" id="slug" onkeyup="ChangeToSlug()" name="project_post_title" required="required" class="form-control ">
@@ -81,13 +81,6 @@
                       </div>
                     </div>
                     <div class="item form-group">
-                      <label class="control-label col-md-3 col-sm-3 label-align">Meta nội dung dự án <span class="required">*</span>
-                      </label>
-                      <div class="col-md-9 col-sm-9 ">
-                        <textarea class="form-control" rows="5" name="project_post_metadesc" required="" placeholder=""></textarea>
-                      </div>
-                    </div>
-                    <div class="item form-group">
                       <label class="control-label col-md-3 col-sm-3 label-align">Trạng thái <span class="required">*</span></label>
                       <div class="col-md-9 col-sm-9 ">
                         <select name="project_post_status" class="form-control">
@@ -99,8 +92,8 @@
                     <div class="ln_solid"></div>
                     <div class="item form-group">
                       <div class="col-md-9 col-sm-9 offset-md-3">
-                        <button class="btn btn-primary" type="reset">Hủy dự án</button>
-                        <button type="submit" class="btn btn-success">Tạo dự án</button>
+                        <button class="btn btn-primary" type="reset">Hủy bài viết dự án</button>
+                        <button type="submit" class="btn btn-success">Tạo bài viết dự án</button>
                       </div>
                     </div>
 

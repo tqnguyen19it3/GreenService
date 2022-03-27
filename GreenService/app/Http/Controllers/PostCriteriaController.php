@@ -49,16 +49,15 @@ class PostCriteriaController extends Controller
 
         if($get_image){
             $get_name_image = $get_image->getClientOriginalName();
-            $name_image = current(explode('.', $get_name_image)); //current(explode('.', $get_name_image)); chia chuỗi ra để cắt đuôi từ dấu chấm
-            $new_custom_name_image = $name_image.'('.rand(0,99).')'.'.'.$get_image->getClientOriginalExtension(); 
-            //getClientOriginalExtention():lấy đuôi mở rộng
+            $name_image = current(explode('.', $get_name_image)); 
+            $new_custom_name_image = $name_image.'('.rand(0,99).trim(date('Y-m-d', time())).rand(0,99).')'.'.'.$get_image->getClientOriginalExtension();   
             $get_image->move('./public/uploads/PostsCriteriaImg', $new_custom_name_image);
             $post_criteria->post_criteria_img = $new_custom_name_image;
             $post_criteria->save();
-            Session::put('message', 'Đã thêm mới kinh nghiệm năng lực làm việc');
+            Session::put('message', 'Đã thêm một bài viết mới cho kinh nghiệm năng lực làm việc');
             return redirect()->back();
         }else{
-        	Session::put('messageError','Làm ơn hãy thêm hình ảnh vào kinh nghiệm năng lực làm việc!');
+        	Session::put('messageError','Làm ơn hãy thêm hình ảnh cho bài viết kinh nghiệm năng lực làm việc!');
         	return redirect()->back();
         }
     }
@@ -88,18 +87,17 @@ class PostCriteriaController extends Controller
 
         if($get_image1){
             $get_name_image1 = $get_image1->getClientOriginalName();
-            $name_image1 = current(explode('.', $get_name_image1)); //current(explode('.', $get_name_image)); chia chuỗi ra để cắt đuôi từ dấu chấm
-            $new_custom_name_image1 = $name_image1.'('.rand(0,99).')'.'.'.$get_image1->getClientOriginalExtension(); 
-            //getClientOriginalExtention():lấy đuôi mở rộng
+            $name_image1 = current(explode('.', $get_name_image1)); 
+            $new_custom_name_image1 = $name_image1.'('.rand(0,99).trim(date('Y-m-d', time())).rand(0,99).')'.'.'.$get_image1->getClientOriginalExtension();  
             $get_image1->move('./public/uploads/PostsCriteriaImg', $new_custom_name_image1);
             $post_criteria->post_criteria_img = $new_custom_name_image1;
             $post_criteria->save();
-            Session::put('message', 'Đã cập nhật mới kinh nghiệm năng lực làm việc');
+            Session::put('message', 'Đã cập nhật mới một bài viết kinh nghiệm năng lực làm việc');
             return redirect('/all-posts-criteria');
         }else{
 
 	        $post_criteria->save();
-	    	Session::put('message','Hình ảnh kinh nghiệm năng lực chưa được làm mới!');
+	    	Session::put('message','Hình ảnh cho bài viết kinh nghiệm năng lực chưa được làm mới!');
 	    	return redirect('/all-posts-criteria');
 	    }
     }
@@ -131,7 +129,7 @@ class PostCriteriaController extends Controller
 
     	$posts_criteria->delete();
     	
-    	Session::put('message', 'Đã xóa kinh nghiệm năng lực làm việc.');
+    	Session::put('message', 'Đã xóa một bài viết kinh nghiệm năng lực làm việc.');
     	return redirect()->back();
     }
 

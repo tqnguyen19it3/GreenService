@@ -7,7 +7,7 @@
 			</div>
 			<div class="left-lien-he">
 				<div class="top-llh">
-					<p>Liên hệ</p>
+					<p style="font-weight: bold">Liên hệ</p>
 				</div>
 				<div class="bottom-llh">
 					<form>
@@ -37,7 +37,7 @@
 								<input type="text" name="">
 							</p>
 							<p class="first-form form-full">
-								<label>
+								<label style="font-weight: bold; font-size: 19px;">
 									Lời nhắn
 								</label>
 								<textarea></textarea>
@@ -49,7 +49,7 @@
 			</div>
 			<div class="right-lien-he">
 				<div class="top-rlh">
-					<p>Liên hệ khác</p>
+					<p style="font-weight: bold">Liên hệ khác</p>
 				</div>
 				<p id="ctlh">Nếu bạn có thắc mắc hoặc yêu cầu đặc biệt, chỉ cần viết thư cho chúng tôi. Chúng tôi mong được phục vụ bạn!</p>
 				<ul>
